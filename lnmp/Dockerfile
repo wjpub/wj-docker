@@ -5,14 +5,17 @@ WORKDIR /root
 COPY ./* /root/
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update -y \
-    && apt install -y dos2unix apt-utils wget less vim \
-    && apt upgrade -y \
+    && apt-get upgrade -y \
+    && apt-get install -y dos2unix apt-utils wget less vim lsb-release gnupg \
     && chmod +x /root/*.sh \
     && dos2unix /root/*.sh
 #RUN /bin/bash /root/php7.2_install.sh
-RUN /bin/bash /root/mysql8_install.sh
 #RUN /bin/bash /root/nginx_install.sh
-#CMD /bin/bash /etc/init.d/php7.2-fpm start
-#CMD /bin/bash /etc/init.d/nginx start
+
+# mysql install.
+RUN /bin/bash /root/mysql8_install.sh
 
 ENTRYPOINT ["/bin/bash", "/root/entrypoint.sh"]
+
+
+# docker run -dit -p 127.0.0.1:33060:3306 -p 127.0.0.1:800:80 IMAGE_ID
