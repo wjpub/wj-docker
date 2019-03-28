@@ -9,11 +9,16 @@ RUN apt-get update -y \
     && apt-get install -y dos2unix apt-utils wget less vim lsb-release gnupg \
     && chmod +x /root/*.sh \
     && dos2unix /root/*.sh
-#RUN /bin/bash /root/php7.2_install.sh
-#RUN /bin/bash /root/nginx_install.sh
+
+# openresty install.
+RUN /bin/bash /root/openresty_install.sh
 
 # mysql install.
 RUN /bin/bash /root/mysql8_install.sh
+
+# php7.2 install 
+#RUN /bin/bash /root/php7.2_install.sh
+
 
 ENTRYPOINT ["/bin/bash", "/root/entrypoint.sh"]
 
