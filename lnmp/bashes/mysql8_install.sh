@@ -1,8 +1,9 @@
 #!/bin/bash
 
 mysql8_install() {
-    wget https://repo.mysql.com/mysql-apt-config_0.8.10-1_all.deb
-    dpkg -i mysql-apt-config_0.8.10-1_all.deb
+    # find repo apt verion at: https://dev.mysql.com/downloads/repo/apt/
+    /usr/bin/wget https://repo.mysql.com/mysql-apt-config_0.8.12-1_all.deb
+    /usr/bin/dpkg -i mysql-apt-config_0.8.12-1_all.deb
     apt-get update --allow-insecure-repositories
     apt-get install -y --allow-unauthenticated mysql-server mysql-client libmysqlclient-dev
     echo 'default-time-zone = "+08:00"' >> /etc/mysql/mysql.conf.d/mysqld.cnf

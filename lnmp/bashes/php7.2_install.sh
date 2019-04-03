@@ -11,6 +11,8 @@ php72_install() {
     echo "exec: sudo apt-get install php7.2 php7.2-fpm php7.2-xml php7.2-mbstring  php7.2-mysql php7.2-zip php7.2-curl ...."
     apt-get -y install php7.2 php7.2-fpm php7.2-xml php7.2-mbstring  php7.2-mysql php7.2-zip php7.2-curl
     sed -i "s/;date.timezone =/date.timezone = \"PRC\"/g" /etc/php/7.2/fpm/php.ini
+    sed -i "s/listen = \/run\/php/;listen = \/run\/php/g" /etc/php/7.2/fpm/pool.d/www.conf
+    sed -i '/;listen = \/run\/php/a\listen = 127.0.0.1:9000' /etc/php/7.2/fpm/pool.d/www.conf
     echo "php7.2 install completed. "
 
 }
