@@ -1,4 +1,4 @@
-# System:Ubuntu 18.04
+# System: Ubuntu 18.04
 # PHP: v7.2.15
 # MySQL: v8.0.15
 # Openresty(Nginx): v1.13.6.2
