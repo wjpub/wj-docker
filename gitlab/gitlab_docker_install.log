@@ -1,0 +1,23 @@
+获取镜像：
+sudo docker pull gitlab/gitlab-ce:latest
+
+运行：
+sudo docker run -d -p 8443:443 -p 8081:8081 -p 8022:22 \
+	--name gitlab --restart always \
+	--volume /home/xxx/dockerData/gitlab/config:/etc/gitlab \
+	--volume /home/xxx/dockerData/gitlab/logs:/var/log/gitlab \
+	--volume /home/xxx/dockerData/gitlab/data:/var/opt/gitlab \
+	gitlab/gitlab-ce:latest
+
+配置：
+为了解决这个问题，我们需要修改external_url：
+	sudo docker exec -it gitlab /bin/bash
+	vim /etc/gitlab/gitlab.rb
+
+修改external_url为：
+	external_url "http://xxx.xxx.xxx.xxx:8081"
+这里，请将”xxx.xxx.xxx.xxx”变成为自己的主机ip p
+
+运行gitlab-ctl使配置生效：
+	gitlab-ctl reconfigure
+
