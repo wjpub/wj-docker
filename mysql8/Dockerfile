@@ -13,5 +13,5 @@ RUN apt-get update -y \
 
 ENTRYPOINT ["/bin/bash", "/root/entrypoint.sh"]
 
-# docker run -dit -p 127.0.0.1:33060:3306 -p 127.0.0.1:800:80 IMAGE_ID
-# docker run -dit -p 127.0.0.1:33060:3306 -p 127.0.0.1:800:80 -p 127.0.0.1:801:81 -v D:\workspace\docker:/home/wwwroot IMAGE_ID
+# docker run -dit --restart=always -p 127.0.0.1:33060:3306 -p 127.0.0.1:800:80 IMAGE_ID
+# docker run -dit --restart=always -p 127.0.0.1:33060:3306 -p 127.0.0.1:800:80 -p 127.0.0.1:801:81 -v D:\workspace\docker:/home/wwwroot IMAGE_ID
