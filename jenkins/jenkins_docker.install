@@ -1,0 +1,6 @@
+
+docker pull jenkins
+
+docker run -dit --name myjenkins -p 8080:8080 -p 50000:50000 -v /data/docker_data/jenkins:/var/jenkins_home jenkins
+
+
