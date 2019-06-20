@@ -1,0 +1,21 @@
+
+# install postgres as database
+docker pull postgres
+# postgres datapath:/var/lib/pgsql/data, port:5432, root_user: postgres
+docker run -dit --restart always --name confluence_postgresdb -v database_data_path:/var/lib/pgsql/data postgres:latest
+
+# create confluence db in postgres
+psql -U postgres
+create databse confluence with owner postgres;
+\l
+
+# install confluence 
+docker pull docker.io/cptactionhank/atlassian-confluence
+docker run -dit --resetart always --name confluence -p 8084:8090 cptactionhank/atlassian-confluence:latest
+
+# crack confluence
+http://down.whsir.com/downloads/confluence_crack.zip
+unzip confluence_crack.zip
+cd confluence破解
+
+
