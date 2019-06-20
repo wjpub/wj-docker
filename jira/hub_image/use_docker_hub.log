@@ -1,0 +1,13 @@
+
+# docker hub url: https://hub.docker.com/r/blacklabelops/jira
+
+docker pull blacklabelops/jira
+
+curl -O https://raw.githubusercontent.com/blacklabelops/jira/master/docker-compose.yml
+
+# change the db password in config file docker-compose.yml 
+# config docker-compose.yml well
+docker-compose up -d
+
+
+
