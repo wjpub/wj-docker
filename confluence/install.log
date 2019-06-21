@@ -6,16 +6,54 @@ docker run -dit --restart always --name confluence_postgresdb -v database_data_p
 
 # create confluence db in postgres
 psql -U postgres
-create databse confluence with owner postgres;
+create database confluence with owner postgres;
 \l
 
 # install confluence 
 docker pull docker.io/cptactionhank/atlassian-confluence
-docker run -dit --resetart always --name confluence -p 8084:8090 cptactionhank/atlassian-confluence:latest
+docker run -dit --restart always --name confluence -p 8084:8090 cptactionhank/atlassian-confluence:latest
+
+# copy auth file to crack
+docker cp confluence:/opt/atlassian/confluence/confluence/WEB-INF/lib/atlassian-extras-decoder-v2-3.4.1.jar ./
+
+# rename auth file to crack file name: atlassian-extras-2.4.jar
+mv atlassian-extras-decoder-v2-3.4.1.jar atlassian-extras-2.4.jar
+
+# browse http://127.0.0.1:8084 
+# and follow the step to chose "production installation" 
+# and get the "server ID" for crack, stop when see the Server ID.
+# real Server ID: BES3-69Q0-MKMI-B3J0
+# real crack file: atlassian-extras-decoder-v2-3.4.1.jar
+# real generate KEY:
+# AAABLw0ODAoPeJxtkE1vwjAMhu/5FZF2DuqHxgRSpJU2kwpNyyhM2jF0ZlgKKUrabvz7BTou0462X
+# z967IcXi3TZGxqFNIzmQTCPZjSttzQKwhnJwDUWzx22hqetOegeTAOk7E97sNVh58A6zkKSWlDXU
+# KY64NdNFkxZ5Put6VTTleoE/Ovo0JLGUya+hQPwzvZwjwipUHM0Azrca3h2DRiYGE3EoHR/g/OD0
+# g5GQoF+7mB7OcMNnlZSik2aJwXxINOBUV5UfJ/RXkapOH5iYcSixxFwPyHVvevAlu0HOB6QWpT8v
+# dpRmawElYImtE4yuk7KLJmQyn4qg26UwfINa1wUgm5FIkkNdgCbZ3wh6phNZ68BkyuZs0W8DMivr
+# Z8WeXav/pdb97Y5Kgd/PvkDPDOIejAsAhRC2J+QaEpwv2MT+f3BI6XJRxiqtwIUGw9kHiJkhmLhY
+# ymAgbWdh1JMk5o=X02f7
 
 # crack confluence
-http://down.whsir.com/downloads/confluence_crack.zip
+# download crack tools and run kengen script to get the crack key 
+# window run confluence_keygen.jar and config with name: whsir
+# you can get the crack key and the rewrite atlassian-extras-2.4.jar
+# save the key
+wget http://down.whsir.com/downloads/confluence_crack.zip
 unzip confluence_crack.zip
 cd confluence破解
+
+# send back the crack file: atlassian-extras-2.4.jar
+cp atlassian-extras-2.4.jar atlassian-extras-decoder-v2-3.4.1.jar
+docker cp atlassian-extras-decoder-v2-3.4.1.jar confluence:/opt/atlassian/confluence/confluence/WEB-INF/lib/
+
+# restart confluence container
+docker restart confluence
+
+# browse http://127.0.0.1:8084 
+# and flow the step to the "server ID" page
+# and paste the key string to textarea below Server ID line.
+# then click next step to config your db conections.
+
+## confluence install and crack done!!!
 
 

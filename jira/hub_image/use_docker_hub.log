@@ -7,6 +7,7 @@ curl -O https://raw.githubusercontent.com/blacklabelops/jira/master/docker-compo
 
 # change the db password in config file docker-compose.yml 
 # config docker-compose.yml well
+# use self_build/jira_jars/atlassian-extras-3.2.jar to crack
 docker-compose up -d
 
 
