@@ -10,10 +10,10 @@ services:
     volumes:
       - jiradata:/var/atlassian/jira
     ports:
-      - '80:8080'
+      - '8080:8080'
     environment:
       - 'JIRA_DATABASE_URL=postgresql://jira@postgresql/jiradb'
-      - 'JIRA_DB_PASSWORD=jellyfish'
+      - 'JIRA_DB_PASSWORD='
       - 'SETENV_JVM_MINIMUM_MEMORY=2048m'
       - 'SETENV_JVM_MAXIMUM_MEMORY=4096m'
       - 'JIRA_PROXY_NAME='
@@ -35,7 +35,7 @@ services:
     environment:
       - 'POSTGRES_USER=jira'
       # CHANGE THE PASSWORD!
-      - 'POSTGRES_PASSWORD=jellyfish'
+      - 'POSTGRES_PASSWORD='
       - 'POSTGRES_DB=jiradb'
       - 'POSTGRES_ENCODING=UNICODE'
       - 'POSTGRES_COLLATE=C'
