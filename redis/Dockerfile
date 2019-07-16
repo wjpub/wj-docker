@@ -13,5 +13,5 @@ RUN apt-get update -y \
 
 ENTRYPOINT ["/bin/bash", "/root/entrypoint.sh"]
 
-# docker run -dit --restart=always --name=mysql8 -p 0.0.0.0:33060:3306 IMAGE_ID
-# docker run -dit --restart=always --name=mysql8 -p 0.0.0.0:33060:3306 -v D:\workspace\docker:/home/wwwroot IMAGE_ID
+# docker run -dit --restart=always --name=redis -p 0.0.0.0:6379:6379 IMAGE_ID
+# docker run -dit --restart=always --name=redis -p 0.0.0.0:6379:6379 -v /var/lib/redis:/var/lib/redis IMAGE_ID

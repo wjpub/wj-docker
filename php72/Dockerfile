@@ -13,5 +13,5 @@ RUN apt-get update -y \
 
 ENTRYPOINT ["/bin/bash", "/root/entrypoint.sh"]
 
-# docker run -dit --restart=always --name=mysql8 -p 0.0.0.0:33060:3306 IMAGE_ID
-# docker run -dit --restart=always --name=mysql8 -p 0.0.0.0:33060:3306 -v D:\workspace\docker:/home/wwwroot IMAGE_ID
+# docker run -dit --restart=always --name=php72 IMAGE_ID
+# docker run -dit --restart=always --name=php72 -v D:\workspace\docker:/home/wwwroot IMAGE_ID
