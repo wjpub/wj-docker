@@ -1,3 +1,3 @@
 #!/bin/bash
-./redis_install.sh
+./ubuntu_set.sh
 ./rmfiles.sh

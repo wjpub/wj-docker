@@ -10,8 +10,10 @@ RUN apt-get update -y \
     && chmod +x *.sh \
     && dos2unix *.sh \
     && /bin/bash base_install.sh
+CMD ["nohup mysqld -u root &"]
 
-ENTRYPOINT ["/bin/bash", "/root/entrypoint.sh"]
+
+#ENTRYPOINT ["/bin/bash", "/root/entrypoint.sh"]
 
 # docker run -dit --restart=always --name=mysql8 -p 0.0.0.0:33060:3306 IMAGE_ID
 # docker run -dit --restart=always --name=mysql8 -p 0.0.0.0:33060:3306 -v D:\workspace\docker:/home/wwwroot IMAGE_ID
