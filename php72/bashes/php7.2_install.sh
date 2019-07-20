@@ -12,7 +12,7 @@ php72_install() {
     apt-get -y install php7.2 php7.2-fpm php7.2-xml php7.2-mbstring  php7.2-mysql php7.2-zip php7.2-curl php7.2-gd
     sed -i "s/;date.timezone =/date.timezone = \"PRC\"/g" /etc/php/7.2/fpm/php.ini
     sed -i "s@^listen = /run/php/php7.2-fpm.sock@;listen = /run/php/php7.2-fpm.sock@g" /etc/php/7.2/fpm/pool.d/www.conf
-    sed -i "/^;listen = \/run\/php\/php7.2-fpm.sock/a\listen = 127.0.0.1:9000" /etc/php/7.2/fpm/pool.d/www.conf
+    sed -i "/^;listen = \/run\/php\/php7.2-fpm.sock/a\listen = 0.0.0.0:9000" /etc/php/7.2/fpm/pool.d/www.conf
     sed -i "s/^user = www-data/user = root/g" /etc/php/7.2/fpm/pool.d/www.conf
     sed -i "s/^group = www-data/group = root/g" /etc/php/7.2/fpm/pool.d/www.conf
     sed -i "s/^listen.owner = www-data/listen.owner = root/g" /etc/php/7.2/fpm/pool.d/www.conf
