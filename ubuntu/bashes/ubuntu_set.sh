@@ -13,9 +13,15 @@ en_US.UTF-8 UTF-8
 zh_CN.UTF-8 UTF-8
 zh_CN.GBK GBK
 zh_CN GB2312' >> /var/lib/locales/supported.d/local
+touch /root/.bashrc
+echo '
+LANG="zh_CN.UTF-8"
+LANGUAGE="zh_CN:zh"' >> /root/.bashrc
+source /root/.bashrc
 # 最后，执行命令：
 locale-gen
 # 对于中文乱码是空格的情况，安装中文字体解决。
 apt-get -y install fonts-droid-fallback ttf-wqy-zenhei ttf-wqy-microhei fonts-arphic-ukai fonts-arphic-uming
 # 设置时区
 ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+

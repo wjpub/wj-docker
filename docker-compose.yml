@@ -1,0 +1,65 @@
+version: "3.3"
+services:
+  dw-redis:
+    image: dw_research_redis:v1.6
+    volumes:
+      - "/var/lib/redis:/var/lib/redis"
+    restart: always
+    networks:
+      research_network:
+        ipv4_address: 172.18.0.2
+
+  dw-mysql8:
+    image: dw_research_mysql8:v1.6
+    volumes:
+      - "/var/lib/mysql8:/var/lib/mysql"
+    restart: always
+    networks:
+      research_network:
+        ipv4_address: 172.18.0.3
+
+  dw-research:
+    image: dw_research_php72:v1.6
+    volumes:
+      - "/home/wwwroot/research:/home/wwwroot/research"
+    restart: always
+    networks:
+      research_network:
+        ipv4_address: 172.18.0.4
+
+  dw-python3:
+    image: dw_research_python3:v1.6
+    restart: always
+    volumes:
+      - "/home/wwwroot/research/DW_Research_Platform:/root"
+    networks:
+      research_network:
+        ipv4_address: 172.18.0.6
+
+  dw-openresty:
+    image: dw_research_openresty:v1.6
+    volumes:
+      - "/home/wwwroot/research/research_web:/home/wwwroot/research/research_web"
+    ports:
+      - "8088:80"
+    restart: always
+    networks:
+      research_network:
+        ipv4_address: 172.18.0.5
+
+networks:
+  research_network:
+    driver: bridge
+    ipam:
+      config:
+      - subnet: 172.18.0.0/16
+      #- gateway: 172.18.0.1
+
+#volumes:
+#  db_redis: "/var/lib/redis"
+#  db_mysql: "/var/lib/mysql"
+#  data_project: "/home/wwwroot"
+#  data_all: "/home/wwwroot"
+
+
+

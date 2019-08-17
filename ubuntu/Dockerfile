@@ -5,7 +5,6 @@ WORKDIR /root
 COPY ./* /root/
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update -y \
-#    && apt-get upgrade -y \
 #    && apt-get install -y dos2unix apt-utils wget less vim lsb-release gnupg git unzip tmux \
     && apt-get install -y dos2unix \
     && chmod +x *.sh \
