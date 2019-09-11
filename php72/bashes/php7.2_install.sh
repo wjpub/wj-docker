@@ -2,7 +2,7 @@
 
 php72_install() {
     echo "exec: apt -y install software-properties-common apt-transport-https lsb-release ca-certificates ...."
-    apt -y install software-properties-common apt-transport-https lsb-release ca-certificates wget
+    apt -y install software-properties-common apt-transport-https lsb-release ca-certificates wget cron 
     echo "exec: add-apt-repository ppa:ondrej/php ...."
     add-apt-repository -y ppa:ondrej/php
     echo "exec: apt update ...."
