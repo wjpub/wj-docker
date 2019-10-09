@@ -1,0 +1,94 @@
+version: "3.7"
+services:
+  wj-zookeeper1:
+    image: wj-zookeeper 
+    volumes:
+      - "/data/docker_data/zookeeper/server1/logs:/root/zookeeper-logs"
+      - "/data/docker_data/zookeeper/server1/data:/root/zookeeper-data"
+      - "/data/docker_data/zookeeper/server1/zoo.cfg:/root/apache-zookeeper-3.5.5-bin/conf/zoo.cfg"
+    restart: always
+    networks:
+      kafka_network:
+        ipv4_address: 172.20.0.10
+
+  wj-zookeeper2:
+    image: wj-zookeeper
+    volumes:
+      - "/data/docker_data/zookeeper/server2/logs:/root/zookeeper-logs"
+      - "/data/docker_data/zookeeper/server2/data:/root/zookeeper-data"
+      - "/data/docker_data/zookeeper/server2/zoo.cfg:/root/apache-zookeeper-3.5.5-bin/conf/zoo.cfg"
+    restart: always
+    networks:
+      kafka_network:
+        ipv4_address: 172.20.0.11
+
+  wj-zookeeper3:
+    image: wj-zookeeper
+    volumes:
+      - "/data/docker_data/zookeeper/server3/logs:/root/zookeeper-logs"
+      - "/data/docker_data/zookeeper/server3/data:/root/zookeeper-data"
+      - "/data/docker_data/zookeeper/server3/zoo.cfg:/root/apache-zookeeper-3.5.5-bin/conf/zoo.cfg"
+    restart: always
+    networks:
+      kafka_network:
+        ipv4_address: 172.20.0.12
+
+  wj-kafka1:
+    image: wj-kafka
+    volumes:
+      - "/data/docker_data/kafka/server1/logs:/root/kafka-logs"
+      - "/data/docker_data/kafka/server1/server.properties:/root/kafka_2.12-2.2.0/config/server.properties"
+    restart: always
+    networks:
+      kafka_network:
+        ipv4_address: 172.20.0.20
+
+  wj-kafka2:
+    image: wj-kafka
+    volumes:
+      - "/data/docker_data/kafka/server2/logs:/root/kafka-logs"
+      - "/data/docker_data/kafka/server2/server.properties:/root/kafka_2.12-2.2.0/config/server.properties"
+    restart: always
+    networks:
+      kafka_network:
+        ipv4_address: 172.20.0.21
+
+  wj-kafka3:
+    image: wj-kafka
+    volumes:
+      - "/data/docker_data/kafka/server3/logs:/root/kafka-logs"
+      - "/data/docker_data/kafka/server3/server.properties:/root/kafka_2.12-2.2.0/config/server.properties"
+    restart: always
+    networks:
+      kafka_network:
+        ipv4_address: 172.20.0.22
+
+  wj-django1:
+    image: wj-django
+    volumes:
+      - "/root/info_collect:/root/info"
+    restart: always
+    ports:
+      - "2080:80"
+    command: 
+      python /root/info/manage.py runserver 0:80
+    networks:
+      kafka_network:
+        ipv4_address: 172.20.0.30
+
+networks:
+  kafka_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+      #- gateway: 172.18.0.1
+
+#volumes:
+#  db_redis: "/var/lib/redis"
+#  db_mysql: "/var/lib/mysql"
+#  data_project: "/home/wwwroot"
+#  data_all: "/home/wwwroot"
+
+
+

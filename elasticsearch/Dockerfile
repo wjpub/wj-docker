@@ -8,11 +8,10 @@ RUN apt-get update -y \
     && chmod +x *.sh \
     && dos2unix *.sh \
     && /bin/bash base_install.sh
-
 ENV JAVA_HOME /root/jdk-12.0.2
 ENV PATH $PATH:$JAVA_HOME/bin
 
-CMD ["/root/kafka_2.12-2.2.0/bin/kafka-server-start.sh", "/root/kafka_2.12-2.2.0/config/server.properties"]
+ENTRYPOINT ["/bin/bash", "/root/entrypoint.sh"]
 
-#ENTRYPOINT ["/bin/bash", "/root/entrypoint.sh"]
-
+# docker build -t wj-reids .
+# docker run -dit --restart=always --name=redis -p 6379:6379 -v /var/lib/redis:/var/lib/redis wj-redis

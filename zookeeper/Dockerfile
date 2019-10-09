@@ -12,7 +12,7 @@ RUN apt-get update -y \
 ENV JAVA_HOME /root/jdk-12.0.2
 ENV PATH $PATH:$JAVA_HOME/bin
 
-CMD ["/root/kafka_2.12-2.2.0/bin/kafka-server-start.sh", "/root/kafka_2.12-2.2.0/config/server.properties"]
+CMD ["/root/apache-zookeeper-3.5.5-bin/bin/zkServer.sh", "start-foreground"]
 
 #ENTRYPOINT ["/bin/bash", "/root/entrypoint.sh"]
 
