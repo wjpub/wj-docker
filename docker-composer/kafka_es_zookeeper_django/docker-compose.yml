@@ -76,6 +76,17 @@ services:
       kafka_network:
         ipv4_address: 172.20.0.30
 
+  wj-es1:
+    image: wj-es
+    volumes:
+      - "/data/docker_data/elasticsearch/server1/elasticsearch.yml:/elasticsearch-7.3.2/config/elasticsearch.yml"
+      - "/data/docker_data/elasticsearch/server1/logs:/elasticsearch-7.3.2/logs"
+      - "/data/docker_data/elasticsearch/server1/data:/elasticsearch-7.3.2/data"
+    restart: always
+    networks:
+      kafka_network:
+        ipv4_address: 172.20.0.40
+
 networks:
   kafka_network:
     driver: bridge
@@ -89,6 +100,6 @@ networks:
 #  db_mysql: "/var/lib/mysql"
 #  data_project: "/home/wwwroot"
 #  data_all: "/home/wwwroot"
-
+          
 
 

@@ -8,10 +8,11 @@ RUN apt-get update -y \
     && chmod +x *.sh \
     && dos2unix *.sh \
     && /bin/bash base_install.sh
-ENV JAVA_HOME /root/jdk-12.0.2
+ENV JAVA_HOME /jdk-12.0.2
 ENV PATH $PATH:$JAVA_HOME/bin
 
-ENTRYPOINT ["/bin/bash", "/root/entrypoint.sh"]
+USER es
+WORKDIR /
+CMD ["/elasticsearch-7.3.2/bin/elasticsearch"]
 
-# docker build -t wj-reids .
-# docker run -dit --restart=always --name=redis -p 6379:6379 -v /var/lib/redis:/var/lib/redis wj-redis
+
